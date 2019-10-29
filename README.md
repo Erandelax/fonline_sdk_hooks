@@ -28,12 +28,6 @@ Library adds event-like functions and methods `Subscribe` and `Dispatch` to subs
 - `void Map::Dispatch(string& tag)`
 - `void Map::Dispatch(string& tag, ...?&inout)`
 
-## How to install
-
-Compile and bind somewhere at the top of script modules loading order:
-- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.server.dll SERVER"`
-- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.client.dll CLIENT"`
-
 # Examples
 
 ## Events
@@ -80,3 +74,9 @@ float get_item_cost(Item@ item) {
   return cost;
 }
 ```
+
+# Installation
+
+Build and bind dynamic library somewhere at the top of script modules loading order:
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.server.dll SERVER"`
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.client.dll CLIENT"`
