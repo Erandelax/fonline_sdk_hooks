@@ -1,4 +1,4 @@
-# FOnline SDK Event Hooks
+# FOnline SDK Variadic Hooks
 
 Library adds event-like functions and methods `Subscribe` and `Dispatch` to subscribe a set of script callbacks to a named event and call it afterwards (up to 10 optional arguments supported).
 
