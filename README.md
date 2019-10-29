@@ -33,3 +33,19 @@ Library adds event-like functions and methods `Subscribe` and `Dispatch` to subs
 Compile and bind somewhere at the top of script modules loading order:
 - `#  pragma bindfunc  "void _events() -> ../bin/_events.server.dll SERVER"`
 - `#  pragma bindfunc  "void _events() -> ../bin/_events.client.dll SERVER"`
+
+# Examples
+```angelscript
+// logger.fos module
+bool module_init() {
+  Subscribe("Warning","logger","LogToFileStream");
+}
+void LogToFileStream(string message){
+  // ...
+}
+```
+
+```angelscript
+// someothermodule.fos module random function body
+Dispatch("Warning","Hello World!");
+```
