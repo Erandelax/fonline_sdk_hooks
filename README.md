@@ -92,8 +92,12 @@ float get_item_cost(Item@ item) {
 // main.fos
 //
 uint loop(){
-  if (10 > GetTick() % 100) {
+  if (0 == GetTick() % 100) {
     DispatchByIndex("loop",100);
+    
+    if (0 == GetTick() % 1000) {
+      DispatchByIndex("loop",1000);
+    }
   }
   return 10;
 }
