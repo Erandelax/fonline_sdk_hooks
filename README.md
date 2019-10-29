@@ -35,17 +35,48 @@ Compile and bind somewhere at the top of script modules loading order:
 - `#  pragma bindfunc  "void _events() -> ../bin/_events.client.dll SERVER"`
 
 # Examples
+
+## Events
 ```angelscript
+//
 // logger.fos module
+//
 bool module_init() {
   Subscribe("Warning","logger","LogToFileStream");
 }
 void LogToFileStream(string message){
   // ...
 }
+
+//
+// someothermodule.fos module random function body
+//
+Dispatch("Warning","Hello World!");
 ```
+## Filters
 
 ```angelscript
-// someothermodule.fos module random function body
-Dispatch("Warning","Hello World!");
+//
+// item_durability.fos module
+//
+bool module_init() {
+  Subscribe("filter:item_cost","ItemCostFilter");
+}
+void ItemCostFilter(uint itemId, float& cost) {
+  Item@ item = GetItem(itemId);
+  if (null is item) return;
+  
+  if (item.Durability < 50) {
+    cost *= 0.5;
+  }
+}
+//
+// economics.fos module
+//
+float get_item_cost(Item@ item) {
+  float cost = float(item.Proto.Cost);
+  Dispatch("filter:item_cost", item.Id, cost);
+  
+  return cost;
+}
 ```
