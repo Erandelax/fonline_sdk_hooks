@@ -87,7 +87,7 @@ float get_item_cost(Item@ item) {
 }
 ```
 ## ...and other horrible stuff
-```angelscripts
+```angelscript
 //
 // main.fos
 //
