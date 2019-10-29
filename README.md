@@ -31,8 +31,8 @@ Library adds event-like functions and methods `Subscribe` and `Dispatch` to subs
 ## How to install
 
 Compile and bind somewhere at the top of script modules loading order:
-- `#  pragma bindfunc  "void _events() -> ../bin/_events.server.dll SERVER"`
-- `#  pragma bindfunc  "void _events() -> ../bin/_events.client.dll SERVER"`
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.server.dll SERVER"`
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.client.dll CLIENT"`
 
 # Examples
 
