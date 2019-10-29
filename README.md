@@ -14,19 +14,19 @@ Library adds event-like functions and methods `Subscribe` and `Dispatch` to subs
 - `void DispatchByName(string& tag, string& name, ...?&inout)`
 
 ## Critter & CritterCl 
-(aka `DispatchByIndex(tag+"@Critter", cr.Id, ...)`):
+aka `DispatchByIndex(tag+"@Critter", cr.Id, ...)`
 - `void Critter::Subscribe(string& tag, string& module, string& function)`
 - `void Critter::Dispatch(string& tag)`
 - `void Critter::Dispatch(string& tag, ...?&inout)`
 
 ## Item & ItemCl:
-(aka `DispatchByIndex(tag+"@Item", item.Id, ...)`):
+aka `DispatchByIndex(tag+"@Item", item.Id, ...)`
 - `void Item::Subscribe(string& tag, string& module, string& function)`
 - `void Item::Dispatch(string& tag)`
 - `void Item::Dispatch(string& tag, ...?&inout)`
 
 ## Map:
-(aka `DispatchByIndex(tag+"@Map", map.Data.Id, ...)`):
+aka `DispatchByIndex(tag+"@Map", map.Data.Id, ...)`
 - `void Map::Subscribe(string& tag, string& module, string& function)`
 - `void Map::Dispatch(string& tag)`
 - `void Map::Dispatch(string& tag, ...?&inout)`
