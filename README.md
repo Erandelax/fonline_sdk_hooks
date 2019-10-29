@@ -31,6 +31,12 @@ aka `DispatchByIndex(tag+"@Map", map.Data.Id, ...)`
 - `void Map::Dispatch(string& tag)`
 - `void Map::Dispatch(string& tag, ...?&inout)`
 
+# Installation
+
+Build and bind dynamic library somewhere at the top of script modules loading order:
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.server.dll SERVER"`
+- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.client.dll CLIENT"`
+
 # Examples
 
 ## Events
@@ -41,6 +47,7 @@ aka `DispatchByIndex(tag+"@Map", map.Data.Id, ...)`
 bool module_init() {
   Subscribe("Warning","logger","LogToFileStream");
 }
+
 void LogToFileStream(string message){
   // ...
 }
@@ -59,6 +66,7 @@ Dispatch("Warning","Hello World!");
 bool module_init() {
   Subscribe("filter:item_cost","ItemCostFilter");
 }
+
 void ItemCostFilter(uint itemId, float& cost) {
   Item@ item = GetItem(itemId);
   if (null is item) return;
@@ -67,6 +75,7 @@ void ItemCostFilter(uint itemId, float& cost) {
     cost *= 0.5;
   }
 }
+
 //
 // economics.fos module
 //
@@ -77,9 +86,26 @@ float get_item_cost(Item@ item) {
   return cost;
 }
 ```
+## ...and other horrible stuff
+```angelscripts
+//
+// main.fos
+//
+uint loop(){
+  if (10 > GetTick() % 100) {
+    DispatchByIndex("loop",100);
+  }
+  return 10;
+}
 
-# Installation
+//
+// custom.fos
+//
+bool module_init(){ 
+  Subscribe("loop",100,"custom","loop");
+}
 
-Build and bind dynamic library somewhere at the top of script modules loading order:
-- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.server.dll SERVER"`
-- `#  pragma bindfunc  "void _hooks() -> ../bin/_hooks.client.dll CLIENT"`
+void loop(){
+  // Do stuff
+}
+```
